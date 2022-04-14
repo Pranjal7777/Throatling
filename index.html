@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .unlimited {
+        height: 300px;
+        width: 200px;
+        border: 1px solid black;
+        overflow: auto;
+        margin: auto;
+        margin-top: 140px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="list">
+        <h3>Unlimited Scroll</h3>
+        <ul class="unlimited"></ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let count = 1;
+
+  let list = document.querySelector(".unlimited");
+  var load = function () {
+    for (let i = 0; i < 25; i++) {
+      console.log(i);
+      var item = document.createElement("li");
+      item.innerText = "item " + count++;
+      list.appendChild(item);
+    }
+  };
+
+  load();
+  list.addEventListener("scroll", function () {
+    if (list.scrollTop + list.clientHeight >= list.scrollHeight) {
+      load();
+    }
+  });
+</script>
